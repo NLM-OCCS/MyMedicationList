@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="0.965" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="11G63" minimumToolsVersion="Xcode 4.4" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="MMLCCDInfo" representedClassName="MMLCCDInfo" syncable="YES">
+        <attribute name="brandName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codeDisplayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codeDisplayNameRxCUI" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ingredientName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isClinicalDrug" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="translationDisplayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="translationDisplayNameRxCUI" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="medication" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedication" inverseName="ccdInfo" inverseEntity="MMLMedication" syncable="YES"/>
+    </entity>
+    <entity name="MMLConceptProperty" representedClassName="MMLConceptProperty" syncable="YES">
+        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rxcui" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suppressflag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="synonym" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="termtype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="umlsCUI" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="medication" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedication" inverseName="conceptProperty" inverseEntity="MMLMedication" syncable="YES"/>
+    </entity>
+    <entity name="MMLIngredients" representedClassName="MMLIngredients" syncable="YES">
+        <attribute name="ingredient" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="medication" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedication" inverseName="ingredientsArray" inverseEntity="MMLMedication" syncable="YES"/>
+    </entity>
+    <entity name="MMLInsurance" representedClassName="MMLInsurance" syncable="YES">
+        <attribute name="backCardImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="carrier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frontCardImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="groupNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memberNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originalBackCardImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="originalFrontCardImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="rxGroup" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rxIN" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rxPCN" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLPersonData" inverseName="secondaryInsurance" inverseEntity="MMLPersonData" syncable="YES"/>
+    </entity>
+    <entity name="MMLMedication" representedClassName="MMLMedication" syncable="YES">
+        <attribute name="creationID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prescriberDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="prescriberFirstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prescriberLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prescriberSuffix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="repeats" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="stopDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="ccdInfo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLCCDInfo" inverseName="medication" inverseEntity="MMLCCDInfo" syncable="YES"/>
+        <relationship name="conceptProperty" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLConceptProperty" inverseName="medication" inverseEntity="MMLConceptProperty" syncable="YES"/>
+        <relationship name="ingredientsArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MMLIngredients" inverseName="medication" inverseEntity="MMLIngredients" syncable="YES"/>
+        <relationship name="medicationAmount" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedicationAmount" inverseName="medication" inverseEntity="MMLMedicationAmount" syncable="YES"/>
+        <relationship name="medicationFrequency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedicationFrequency" inverseName="medication" inverseEntity="MMLMedicationFrequency" syncable="YES"/>
+        <relationship name="medicationInstruction" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedicationInstruction" inverseName="medication" inverseEntity="MMLMedicationInstruction" syncable="YES"/>
+        <relationship name="medicationList" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedicationList" inverseName="medicationList" inverseEntity="MMLMedicationList" syncable="YES"/>
+    </entity>
+    <entity name="MMLMedicationAmount" representedClassName="MMLMedicationAmount" syncable="YES">
+        <attribute name="amountType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="medication" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedication" inverseName="medicationAmount" inverseEntity="MMLMedication" syncable="YES"/>
+    </entity>
+    <entity name="MMLMedicationFrequency" representedClassName="MMLMedicationFrequency" syncable="YES">
+        <attribute name="frequency" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="medication" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedication" inverseName="medicationFrequency" inverseEntity="MMLMedication" syncable="YES"/>
+    </entity>
+    <entity name="MMLMedicationInstruction" representedClassName="MMLMedicationInstruction" syncable="YES">
+        <attribute name="instruction" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="medication" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedication" inverseName="medicationInstruction" inverseEntity="MMLMedication" syncable="YES"/>
+    </entity>
+    <entity name="MMLMedicationList" representedClassName="MMLMedicationList" syncable="YES">
+        <relationship name="currentPerson" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLPersonData" inverseName="currentMedicationList" inverseEntity="MMLPersonData" syncable="YES"/>
+        <relationship name="discontinuedPerson" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLPersonData" inverseName="discontinuedMedicationList" inverseEntity="MMLPersonData" syncable="YES"/>
+        <relationship name="medicationList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MMLMedication" inverseName="medicationList" inverseEntity="MMLMedication" syncable="YES"/>
+    </entity>
+    <entity name="MMLPersonData" representedClassName="MMLPersonData" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateOfBirth" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="phoneNumer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetAddress1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetAddress2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currentMedicationList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedicationList" inverseName="currentPerson" inverseEntity="MMLMedicationList" syncable="YES"/>
+        <relationship name="discontinuedMedicationList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MMLMedicationList" inverseName="currentPerson" inverseEntity="MMLMedicationList" syncable="YES"/>
+        <relationship name="insurance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MMLInsurance" inverseName="person" inverseEntity="MMLInsurance" syncable="YES"/>
+        <relationship name="secondaryInsurance" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MMLInsurance" inverseName="person" inverseEntity="MMLInsurance" syncable="YES"/>
+    </entity>
+    <fetchRequest name="TestRequest" entity="MMLMedication" predicateString="MMLMedicationList.currentMedicationList == MMLMedication.medicationList AND MMLMedicationList.currentPerson.userId == MMLPersonData.userId AND MMLPersonData.userID == $personId AND stopDate > $todayDate"/>
+    <elements>
+        <element name="MMLCCDInfo" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="MMLConceptProperty" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="MMLIngredients" positionX="198" positionY="351" width="128" height="75"/>
+        <element name="MMLInsurance" positionX="216" positionY="369" width="128" height="210"/>
+        <element name="MMLMedication" positionX="160" positionY="192" width="128" height="315"/>
+        <element name="MMLMedicationAmount" positionX="171" positionY="324" width="128" height="90"/>
+        <element name="MMLMedicationFrequency" positionX="180" positionY="333" width="128" height="75"/>
+        <element name="MMLMedicationInstruction" positionX="189" positionY="342" width="128" height="75"/>
+        <element name="MMLMedicationList" positionX="234" positionY="405" width="128" height="90"/>
+        <element name="MMLPersonData" positionX="160" positionY="192" width="128" height="285"/>
+    </elements>
+</model>
